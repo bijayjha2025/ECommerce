@@ -8,6 +8,7 @@ import Collection from './Pages/Collection'
 import Cart from './Pages/Cart'
 import Products from './Pages/Products'
 import Navbar from './Components/Navbar'
+import Orders from './Pages/Orders'
 
 
 const App = () => {
@@ -25,6 +26,7 @@ const App = () => {
         <Route path='/collection' element={<Collection />} />
         <Route path='/cart' element={<Cart />} />
         <Route path='/products' element={<Products />} />
+        <Route path='/orders' element={<Orders />} />
       </Routes>
 
 
