@@ -3,3 +3,19 @@
 a.active hr{
     display: block;
 }
+
+:root {
+  --gold:       #b8860b;
+  --gold-light: #ffcb63;
+  --gold-dark:  #9a6f00;
+  --ink:        #1a0a00;
+  --cream:      #fff8e7;
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.4; transform: scaleY(1); }
+  50%       { opacity: 1;   transform: scaleY(1.15); }
+}
+.animate-scroll-pulse {
+  animation: scrollPulse 2s ease-in-out infinite;
+}

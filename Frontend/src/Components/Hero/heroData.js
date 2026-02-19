@@ -1,5 +1,16 @@
 import { assets } from '../../assets/assets';
 
+export const BRAND = "WearNepal";
+
+export const STATS = [
+  ['50+',  'Artisan weavers'],
+  ['8+',   'Heritage crafts'],
+  ['100%', 'Ethically made'],
+  ['Free', 'Shipping in Nepal'],
+  ['5-day', 'Easy returns'],
+  ['200+', 'Happy customers'],
+];
+
 export const products = [
   {
     id: 1,
@@ -36,7 +47,7 @@ export const products = [
     tag: "Limited Edition",
     image: assets.HomeCard3,   
     imageBg: "linear-gradient(160deg, #3d0000 0%, #8b1a1a 60%, #c94040 100%)",
-    cardBg: "#fdf6ec",
+    cardBg: "#fcd397",
     textColor: "#1a0a00",
     mutedColor: "rgba(30,10,0,0.42)",
   },
@@ -49,7 +60,7 @@ export const products = [
     tag: "Exclusive",
     image: assets.HomeCard4,
     imageBg: "linear-gradient(160deg, #2c1a0e 0%, #5c3a1e 60%, #8b6343 100%)",
-    cardBg: "#fffbf2",
+    cardBg: "#a4a6a6",
     textColor: "#1a0a00",
     mutedColor: "rgba(30,10,0,0.4)",
   },
@@ -64,4 +75,3 @@ export const StackOffsets = [
   { x:  28, y: -18 },
 ];
 
-export const BRAND = "WearNepal";

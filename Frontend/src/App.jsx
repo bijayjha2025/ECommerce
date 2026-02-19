@@ -9,6 +9,7 @@ import Cart from './Pages/Cart'
 import Products from './Pages/Products'
 import Navbar from './Components/Navbar'
 import Orders from './Pages/Orders'
+import './index.css'
 
 
 const App = () => {
