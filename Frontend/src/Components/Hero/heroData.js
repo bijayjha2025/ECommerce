@@ -60,7 +60,7 @@ export const products = [
     tag: "Exclusive",
     image: assets.HomeCard4,
     imageBg: "linear-gradient(160deg, #2c1a0e 0%, #5c3a1e 60%, #8b6343 100%)",
-    cardBg: "#a4a6a6",
+    cardBg: "#ebf9fa",
     textColor: "#1a0a00",
     mutedColor: "rgba(30,10,0,0.4)",
   },
