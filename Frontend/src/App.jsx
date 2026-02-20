@@ -10,6 +10,7 @@ import Products from './Pages/Products'
 import Navbar from './Components/Navbar'
 import Orders from './Pages/Orders'
 import './index.css'
+import Footer from './Components/Footer'
 
 
 const App = () => {
@@ -29,6 +30,8 @@ const App = () => {
         <Route path='/products' element={<Products />} />
         <Route path='/orders' element={<Orders />} />
       </Routes>
+
+      <Footer />
 
 
 
