@@ -4,6 +4,7 @@ import FeaturedComponent from '../Components/FeaturedCollection/FeaturedComponen
 import Hero from '../Components/Hero/Hero';
 import Marquee from '../Components/Marquee';
 import NewsLetterSignUp from '../Components/NewsLetterSignUp';
+import Testimonials from '../Components/HomeComponents/Testimonial/Testimonials';
 
 const Home = () => {
   return (
@@ -15,6 +16,8 @@ const Home = () => {
       <BestSeller />
 
       <CraftStory />
+
+      <Testimonials />
 
 
       <NewsLetterSignUp />
