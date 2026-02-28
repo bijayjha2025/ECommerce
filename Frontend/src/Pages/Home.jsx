@@ -1,4 +1,5 @@
 import BestSeller from '../Components/BestSeller';
+import CraftStory from '../Components/CraftStory';
 import FeaturedComponent from '../Components/FeaturedCollection/FeaturedComponent';
 import Hero from '../Components/Hero/Hero';
 import Marquee from '../Components/Marquee';
@@ -12,6 +13,8 @@ const Home = () => {
       <FeaturedComponent />
 
       <BestSeller />
+
+      <CraftStory />
 
 
       <NewsLetterSignUp />

@@ -14,6 +14,8 @@ import F6 from './alloFibre.jpeg';
 import F7 from './bhangraShawl.jpg';
 import F8 from './gunyoCholo.jpg';
 
+import craftStoryBg from './craftStory.png';
+
 
 export const assets = {
     Logo,
@@ -33,4 +35,8 @@ export const featuredImages = {
     F7,
     F8,
 
+}
+
+export const craftStoryAssets = {
+    craftStoryBg,
 }
