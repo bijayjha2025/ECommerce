@@ -15,6 +15,7 @@ export const featuredProducts = [
     stock: 3,
     isNew: true,
     isSale: false,
+    isBestSeller: false,
   },
   {
     id: 2,
@@ -27,6 +28,7 @@ export const featuredProducts = [
     stock: 8,
     isNew: false,
     isSale: true,
+    isBestSeller: false,
   },
   {
     id: 3,
@@ -39,6 +41,7 @@ export const featuredProducts = [
     stock: 2,
     isNew: true,
     isSale: false,
+    isBestSeller: false,
   },
   {
     id: 4,
@@ -51,6 +54,7 @@ export const featuredProducts = [
     stock: 12,
     isNew: false,
     isSale: false,
+    isBestSeller: true,
   },
   {
     id: 5,
@@ -63,6 +67,7 @@ export const featuredProducts = [
     stock: 1,
     isNew: false,
     isSale: true,
+    isBestSeller: true,
   },
   {
     id: 6,
@@ -75,6 +80,7 @@ export const featuredProducts = [
     stock: 6,
     isNew: true,
     isSale: false,
+    isBestSeller: true,
   },
   {
     id: 7,
@@ -87,6 +93,7 @@ export const featuredProducts = [
     stock: 9,
     isNew: false,
     isSale: false,
+    isBestSeller: false,
   },
   {
     id: 8,
@@ -99,5 +106,6 @@ export const featuredProducts = [
     stock: 4,
     isNew: false,
     isSale: true,
+    isBestSeller: false,
   },
 ];
