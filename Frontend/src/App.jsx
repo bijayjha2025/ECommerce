@@ -1,4 +1,3 @@
-import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Home from './Pages/Home'
 import About from './Pages/About'
@@ -11,6 +10,8 @@ import Navbar from './Components/Navbar'
 import Orders from './Pages/Orders'
 import './index.css'
 import Footer from './Components/Footer'
+import Favorites from './Pages/Favorites'
+import MyAccount from './Pages/MyAccount'
 
 
 const App = () => {
@@ -29,6 +30,8 @@ const App = () => {
         <Route path='/cart' element={<Cart />} />
         <Route path='/products' element={<Products />} />
         <Route path='/orders' element={<Orders />} />
+        <Route path='/favorites' element={<Favorites />} />
+        <Route path='/myaccount' element={<MyAccount />} />
       </Routes>
 
       <Footer />

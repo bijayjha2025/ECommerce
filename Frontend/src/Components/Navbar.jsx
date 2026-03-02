@@ -1,15 +1,24 @@
 import { useState } from 'react';
 import { assets } from '../assets/assets';
-import { Link, NavLink } from 'react-router-dom';
-import { Menu, Search, ShoppingCart, UserRound, X, ChevronRight } from 'lucide-react';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { Menu, Search, ShoppingCart, UserRound, X, ChevronRight, Heart } from 'lucide-react';
 
 const Navbar = () => {
   const [visible, setVisible] = useState(false);
+  const navigate = useNavigate();
+
+  const logout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    navigate('/login');
+  };
 
   return (
 
     <div className='relative flex items-center justify-between py-5 px-4 sm:px-6'>
-     <img src={assets.Logo} alt="Logo" className='w-28 sm:w-32 md:w-40' />
+     <Link to="/">
+      <img src={assets.Logo} alt="Logo" className='w-28 sm:w-32 md:w-40' />
+     </Link>
      
      <div className="hidden sm:flex items-center gap-2 px-4 py-2 bg-white/30 backdrop-blur-md rounded-full border border-white/40 shadow-sm focus-within:ring-2 focus-within:ring-[#b8860b] transition-all duration-300">
 
@@ -40,27 +49,33 @@ const Navbar = () => {
         </NavLink>
       </ul>
 
-      <div className='flex items-center gap-3'>
+      <div className='flex items-center gap-4 sm:gap-5'>
 
         {/* Mobile Search Button */}
        <button className="sm:hidden p-2 rounded-full hover:bg-[#b8860b]/20 transition-colors duration-300">
         <Search size={20} className="text-[#0f172a]" />
        </button>
 
+       <Link to="/favorites" className='relative group'>
+        <Heart size={20} className='text-[#0f172a] hover:text-[#b8860b] transition-colors duration-300' />
+        <span className='absolute -bottom-2 -right-2 bg-[#b8860b] text-white text-xs rounded-full w-4 h-4 flex items-center justify-center font-bold'>3</span>
+       </Link>
+
        <Link to="/cart" className='relative group'>
        <ShoppingCart size={20} className='text-[#0f172a] hover:text-[#b8860b] transition-colors duration-300' />
-        <span className='absolute -bottom-2 -right-2 bg-[#b8860b] text-white text-xs rounded-full w-4 h-4 flex items-center justify-center'>3</span>
+        <span className='absolute -bottom-2 -right-2 bg-[#b8860b] text-white text-xs rounded-full w-4 h-4 flex items-center justify-center font-bold'>3</span>
       </Link>
 
       <div className='group relative hidden sm:block'>
-       <Link to="/login" className="px-2 py-2 flex items-center justify-center rounded-full hover:bg-[#b8860b]/20 transition-all duration-300">
+       <Link to="/myaccount" className="p-1 flex items-center justify-center rounded-full hover:bg-[#b8860b]/20 transition-all duration-300">
         <UserRound size={20} className="text-[#0f172a] hover:text-[#b8860b]" />
        </Link>
 
-        <div className="absolute right-0 mt-2 hidden group-hover:flex flex-col gap-2 w-40 bg-[#ffcb63] backdrop-blur-md border border-white/20 shadow-lg rounded-md py-2 px-4 z-50">
-         <p className="cursor-pointer text-[#0f172a] hover:text-[#b8860b] transition-colors">My Account</p>
-         <p className="cursor-pointer text-[#0f172a] hover:text-[#b8860b] transition-colors">Orders</p>
-         <p className="cursor-pointer text-[#0f172a] hover:text-[#b8860b] transition-colors">Logout</p>
+        <div className="absolute right-0 mt-4 hidden group-hover:flex flex-col gap-2 w-40 bg-[#ffcb63] backdrop-blur-md border border-white/20 shadow-lg rounded-xl py-3 px-4 z-50">
+         <Link to="/myaccount" className="cursor-pointer text-[#0f172a] hover:text-[#b8860b] transition-colors font-medium">My Account</Link>
+         <Link to="/orders" className="cursor-pointer text-[#0f172a] hover:text-[#b8860b] transition-colors font-medium">Orders</Link>
+
+         <p onClick={logout} className="cursor-pointer text-[#0f172a] hover:text-[#b8860b] transition-colors font-medium mt-1 pt-2 border-t border-[#0f172a/10]">Logout</p>
         </div>
        </div>
 
@@ -74,7 +89,9 @@ const Navbar = () => {
       <div className={`fixed top-0 right-0 h-full w-72 bg-[#ffcb63] z-50 flex flex-col shadow-xl transition-transform duration-300 ${visible ? 'translate-x-0' : 'translate-x-full'}`}>
 
        <div className="flex items-center justify-between px-6 py-5 border-b border-[#b8860b]/30">
+        <Link to="/" onClick={() => setVisible(false)}>
         <img src={assets.Logo} alt="Logo" className='w-24' />
+        </Link>
         
         <button onClick={() => setVisible(false)} className="p-2 rounded-full hover:bg-[#b8860b]/20 transition-colors">
          <X size={22} className="text-[#0f172a]" />
@@ -105,7 +122,7 @@ const Navbar = () => {
           <ChevronRight size={18} /> Orders
          </Link>
          
-         <button className="mt-2 w-full py-2 rounded-full bg-[#b8860b] text-white text-sm font-medium hover:bg-[#a07720] transition-colors">
+         <button onClick={() => { logout(); setVisible(false); }} className="mt-2 w-full py-2 rounded-full bg-[#b8860b] text-white text-sm font-medium hover:bg-[#a07720] transition-colors">
           Logout
          </button>
         </div>
