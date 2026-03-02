@@ -16,6 +16,10 @@ import F8 from './gunyoCholo.jpg';
 
 import craftStoryBg from './craftStory.png';
 
+import A1 from './artist1.png';
+import A2 from './artist2.png';
+import A3 from './artist3.png';
+
 
 export const assets = {
     Logo,
@@ -39,4 +43,10 @@ export const featuredImages = {
 
 export const craftStoryAssets = {
     craftStoryBg,
+}
+
+export const artistAssets = {
+    A1,
+    A2,
+    A3,
 }
