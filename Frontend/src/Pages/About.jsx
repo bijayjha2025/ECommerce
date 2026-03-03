@@ -186,7 +186,22 @@ const About = () => {
       </div>
      </div>
 
-
+     <div className="mt-28 mb-10 relative overflow-hidden rounded-3xl bg-[var(--ink)]">
+      <div className="absolute inset-0 bg-gradient-to-tr from-[#fce29f] via-[#ad9453] to-[var(--gold-light)] opacity-90"></div>
+      <div className="absolute -top-24 -right-24 w-64 h-64 bg-[var(--gold)]/20 rounded-full blur-3xl"></div>
+      <div className="absolute -bottom-24 -left-24 w-80 h-80 bg-[var(--gold)]/10 rounded-full blur-3xl"></div>
+      
+      <div className="relative z-10 p-10 sm:p-16 lg:p-20 text-center flex flex-col items-center justify-center min-h-[400px]">
+       <div className="w-16 h-16 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center mb-6 border border-white/20">
+        <Users size={32} className="text-[var(--gold-light)]" />
+       </div>
+       <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif text-[var(--cream)] mb-6">Become a Part of Our Story</h2>
+       <p className="text-[var(--cream)]/70 max-w-2xl mx-auto text-lg mb-10 leading-relaxed">Are you an artisan practicing traditional crafts? Or do you have unique heritage weaves to offer? We are always looking to partner with skilled hands and passionate souls to expand our legacy.</p>
+       <a href="/contact" className="inline-flex items-center gap-3 px-8 py-4 bg-[var(--gold)] text-[var(--ink)] rounded-full font-medium tracking-wide hover:bg-[#ffcb63] transition-colors shadow-[0_0_20px_rgba(184,134,11,0.4)] hover:shadow-[0_0_30px_rgba(184,134,11,0.6)]">Join as an Artisan
+        <Sparkles size={18} />
+       </a>
+      </div>
+    </div>
 
   </div>
   )
