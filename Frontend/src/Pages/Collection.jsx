@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { collectionProducts, CATEGORIES } from "../Data/CollectionData";
 import { Filter, Search, ChevronDown } from "lucide-react";
+import ProductCard from "../Components/ProductCard";
 
 const Collection = () => {
  const [wishlist, setWishlist] = useState([]);
@@ -93,13 +94,27 @@ const Collection = () => {
       </div>
      </div>
 
-
-</div>
-
+     {displayProducts.length > 0 ? (
+     <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8">
+      {displayProducts.map(product => (
+       <ProductCard key={product.id} product={product} wishlisted={wishlist.includes(product.id)} onWishlist={toggleWishlist} />
+      ))}
+     </div>
+     ) : (
+     
+     <div className="text-center py-32 bg-white/20 backdrop-blur-sm rounded-3xl border border-dashed border-[var(--gold)]/40">
+      <div className="w-16 h-16 bg-[var(--gold)]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+       <Search size={24} className="text-[var(--gold-dark)]" />
       </div>
-    </div>
-
-
+     <h3 className="font-serif text-xl text-[var(--ink)] mb-2">No masterpieces found</h3>
+     <p className="text-[var(--ink)]/60 text-sm max-w-sm mx-auto">Try adjusting your filters or search query to discover more items in our collection.</p>
+     <button onClick={() => { setActiveCategory('All'); setSearchQuery(''); }} className="mt-6 px-6 py-2 bg-[var(--ink)] text-[var(--cream)] rounded-full text-sm hover:bg-[var(--gold-dark)] transition-colors">Clear Filters</button>
+     </div>
+    )}
+   
+   </div>
+   </div>
+  </div>
   
   );
 }
