@@ -14,6 +14,17 @@ import F6 from './alloFibre.jpeg';
 import F7 from './bhangraShawl.jpg';
 import F8 from './gunyoCholo.jpg';
 
+import C9 from './bhadgauleTopi.jpg';
+import C10 from './dhotiKurta.jpg';
+import C11 from './kiratDress.jpg';
+import C12 from './kurtaPaijama.jpg';
+import C13 from './raiLimbuWomen.jpg';
+import C14 from './sherpaHat.jpg';
+import C15 from './sherpaMan.jpg';
+import C16 from './sherpaWomen.jpg';
+import C17 from './sherwani.jpg';
+import C18 from './tamangHat.jpg';
+
 import craftStoryBg from './craftStory.png';
 
 import A1 from './artist1.png';
@@ -49,4 +60,25 @@ export const artistAssets = {
     A1,
     A2,
     A3,
+}
+
+export const collectionImages = {
+    F1,
+    F2,
+    F3,
+    F4,
+    F5,
+    F6,
+    F7,
+    F8,
+    C9,
+    C10,
+    C11,
+    C12,
+    C13,
+    C14,
+    C15,
+    C16,
+    C17,
+    C18,
 }
