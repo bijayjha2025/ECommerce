@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { collectionProducts } from '../Data/CollectionData';
-import { ShoppingBag, Trash2 } from 'lucide-react';
+import { ShoppingBag, Trash2, Minus, Plus, ArrowRight, ShieldCheck } from 'lucide-react';
 
 const Cart = () => {
   // Dummy data for cart items
@@ -69,18 +69,74 @@ const Cart = () => {
       </button>
      </div>
      <p className="text-sm text-[var(--ink)]/60 mb-4">Size: <span className="font-medium text-[var(--ink)]">{item.size}</span></p>
-     
-              
-                </div>
-              </div>
-            ))}
-          </div>
 
-        
+     <div className="flex items-center justify-between mt-auto">
+      <div className="flex items-center gap-3 bg-white/60 border border-[var(--gold)]/20 rounded-full px-3 py-1.5 w-max">
+       <button onClick={() => updateQuantity(item.id, item.quantity - 1)} className="w-6 h-6 flex items-center justify-center hover:bg-[var(--gold)]/20 rounded-full hover:text-[var(--gold-dark)] transition-colors disabled:opacity-30" disabled={item.quantity <= 1}>
+        <Minus size={14} />
+       </button>
 
-        </div>
-      )}
+       <span className="w-6 text-center text-sm font-medium text-[var(--ink)]">{item.quantity}</span>
+
+       <button onClick={() => updateQuantity(item.id, item.quantity + 1)} className="w-6 h-6 flex items-center justify-center hover:bg-[var(--gold)]/20 rounded-full hover:text-[var(--gold-dark)] transition-colors">
+        <Plus size={14} />
+       </button>
+      </div>
+
+      <div className="text-right">
+       <p className="font-serif text-lg text-[var(--ink)]">NPR {(item.price * item.quantity).toLocaleString()}</p>
+       {item.quantity > 1 && (
+       <p className="text-xs text-[var(--ink)]/50 mt-0.5">NPR {item.price.toLocaleString()} each</p>
+        )}
+      </div>
+     </div>
+     </div>
+     </div>
+     ))}
     </div>
+
+    <div className="w-full lg:w-[380px] flex-shrink-0">
+     <div className="bg-white/70 backdrop-blur-xl rounded-3xl p-8 border border-[var(--gold-light)]/50 shadow-[0_8px_32px_0_rgba(184,134,11,0.1)] sticky top-24">
+     <h3 className="text-xl font-serif text-[var(--ink)] mb-6 pb-4 border-b border-[var(--gold)]/20">Order Summary</h3>
+
+     <div className="space-y-4 mb-6 text-sm">
+      <div className="flex justify-between text-[var(--ink)]/70">
+       <span>Subtotal</span>
+       <span className="font-serif text-[var(--ink)]">NPR {subtotal.toLocaleString()}</span>
+      </div>
+     <div className="flex justify-between text-[var(--ink)]/70">
+      <span>Shipping Estimate</span>
+      <span className="font-serif text-[var(--ink)]">NPR {shipping.toLocaleString()}</span>
+     </div>
+
+     <div className="flex items-center gap-2 mt-4 pt-4 border-t border-[var(--gold)]/10">
+      <input type="text" placeholder="Discount Voucher" className="w-full bg-white/50 border border-[var(--gold)]/20 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-[var(--gold)]" />
+      <button className="px-4 py-2.5 bg-[var(--ink)]/10 hover:bg-[var(--gold)]/20 text-[var(--ink)] rounded-lg text-sm font-medium transition-colors border border-transparent">Apply</button>
+     </div>
+     </div>
+
+     <div className="flex justify-between items-end mb-8 pt-4 border-t border-[var(--gold)]/20">
+      <span className="text-[var(--ink)] font-medium">Total</span>
+      <div className="text-right">
+       <span className="text-2xl font-serif text-[var(--ink)]">NPR {total.toLocaleString()}</span>
+       <p className="text-[10px] text-[var(--ink)]/50 mt-1 uppercase tracking-wider">Including VAT</p>
+      </div>
+     </div>
+
+     <button className="w-full py-4 bg-[var(--ink)] text-[var(--cream)] rounded-xl font-medium tracking-wide flex items-center justify-center gap-2 hover:bg-[var(--gold-dark)] focus:ring-4 focus:ring-[var(--gold)]/30 transition-all duration-300 group shadow-[0_4px_14px_0_rgba(15,23,42,0.39)]">Proceed to Checkout
+      <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+     </button>
+
+     <div className="mt-6 flex items-center justify-center gap-2 text-[var(--ink)]/50 text-xs">
+      <ShieldCheck size={14} />
+      <span>Secure Checkout</span>
+     </div>
+     </div>
+     </div>
+     
+     </div>
+    )}
+   </div>
   );
 };
 
