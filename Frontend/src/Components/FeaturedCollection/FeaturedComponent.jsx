@@ -1,20 +1,16 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useContext } from 'react';
 import { CATEGORIES, featuredProducts } from './featuredData';
 import ProductCard from '../ProductCard';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { ShopContext } from '../../Context/ShopContext';
 
 export default function FeaturedComponent() {
   const [activeCategory, setActiveCategory] = useState('All');
-  const [wishlist, setWishlist] = useState([]);
+  const { wishlist, toggleWishlist } = useContext(ShopContext);
   const scrollRef = useRef(null);
 
   const filtered =  activeCategory === 'All' ? featuredProducts : featuredProducts.filter(p => p.category === activeCategory);
-
-  const toggleWishlist = (id) => {
-    setWishlist(prev => prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]
-    );
-  };
 
   const scroll = (dir) => {
     scrollRef.current?.scrollBy({ left: dir === 'left' ? -300 : 300, behavior: 'smooth' });
@@ -59,7 +55,7 @@ export default function FeaturedComponent() {
       
       <div ref={scrollRef} className="flex gap-5 overflow-x-auto pb-4 scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
       {filtered.map(product => (
-       <ProductCard key={product.id} product={product} wishlisted={wishlist.includes(product.id)} onWishlist={toggleWishlist} flex />
+       <ProductCard key={product.id} product={product} wishlisted={wishlist.some(id => id === product.id)} onWishlist={() => toggleWishlist(product.id)} flex />
       ))}
       </div>
      </div>

@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { Heart, ShoppingCart } from 'lucide-react';
+import { ShopContext } from '../Context/ShopContext';
 
 function ImagePlaceholder() {
  return(
@@ -16,6 +17,7 @@ function ImagePlaceholder() {
 
 export default function ProductCard({ product, wishlisted, onWishlist, flex = false }) {
   const [hovered, setHovered] = useState(false);
+  const { addToCart } = useContext(ShopContext);
   const { name, category, price, image, originalPrice, imageBg, stock, isNew, isSale  } = product;
   const discount  = originalPrice ? Math.round((1 - price / originalPrice) * 100) : null;
   const lowStock  = stock <= 3;

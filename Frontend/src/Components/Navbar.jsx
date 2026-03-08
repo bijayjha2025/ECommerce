@@ -1,17 +1,28 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { assets } from '../assets/assets';
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate, useLocation } from 'react-router-dom';
 import { Menu, Search, ShoppingCart, UserRound, X, ChevronRight, Heart } from 'lucide-react';
+import { ShopContext } from '../Context/ShopContext';
 
 const Navbar = () => {
   const [visible, setVisible] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
+  const { wishlist, getCartCount, search, setSearch } = useContext(ShopContext);
 
   const logout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     navigate('/login');
   };
+
+  const handleSearchChange = (e) => {
+    setSearch(e.target.value);
+    if (location.pathname !== '/collection' && e.target.value.trim() !== '') {
+      navigate('/collection');
+    }
+  };
+
 
   return (
 
@@ -71,12 +82,15 @@ const Navbar = () => {
         <UserRound size={20} className="text-[#0f172a] hover:text-[#b8860b]" />
        </Link>
 
-        <div className="absolute right-0 mt-4 hidden group-hover:flex flex-col gap-2 w-40 bg-[#ffcb63] backdrop-blur-md border border-white/20 shadow-lg rounded-xl py-3 px-4 z-50">
+       <div className="absolute right-0 top-full pt-4 hidden group-hover:block z-50">
+        <div className="flex flex-col gap-2 w-40 bg-[#ffcb63] backdrop-blur-md border border-white/20 shadow-lg rounded-xl py-3 px-4 relative z-50">
+
          <Link to="/myaccount" className="cursor-pointer text-[#0f172a] hover:text-[#b8860b] transition-colors font-medium">My Account</Link>
          <Link to="/orders" className="cursor-pointer text-[#0f172a] hover:text-[#b8860b] transition-colors font-medium">Orders</Link>
 
          <p onClick={logout} className="cursor-pointer text-[#0f172a] hover:text-[#b8860b] transition-colors font-medium mt-1 pt-2 border-t border-[#0f172a/10]">Logout</p>
         </div>
+       </div>
        </div>
 
         <button className="lg:hidden p-2 rounded-md hover:bg-[#b8860b]/20 transition-colors duration-300" onClick={() => setVisible(true)}>
@@ -100,7 +114,7 @@ const Navbar = () => {
 
         <div className="mx-4 mt-4 flex items-center gap-2 px-4 py-2 bg-white/40 rounded-full border border-white/40 shadow-sm focus-within:ring-2 focus-within:ring-[#b8860b] transition-all duration-300">
          <Search size={16} className="text-[#0f172a]/70" />
-         <input type="text" placeholder="Search products..." className="bg-transparent outline-none text-sm text-[#0f172a] placeholder:text-[#0f172a]/50 w-full" />
+         <input type="text" value={search} onChange={(e) => { handleSearchChange(e); setVisible(false); }} placeholder="Search products..." className="bg-transparent outline-none text-sm text-[#0f172a] placeholder:text-[#0f172a]/50 w-full" />
         </div>
 
         <ul className="flex flex-col mt-4 px-4">

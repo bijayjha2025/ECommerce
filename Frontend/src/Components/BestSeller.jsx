@@ -1,19 +1,15 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import ProductCard from './ProductCard';
 import { featuredProducts } from './FeaturedCollection/featuredData';
+import { ShopContext } from '../Context/ShopContext';
 
 export default function BestSeller (){
-  const [wishlist, setWishlist] = useState([]);
+  const { wishlist, toggleWishlist } = useContext(ShopContext);
 
   const bestSellers = featuredProducts.filter(
   product => product.isBestSeller 
  );
-
-  const toggleWishlist = (id) =>
-    setWishlist(prev =>
-      prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]
-    );
 
   return (
    <section className="py-16 px-4">
@@ -33,7 +29,7 @@ export default function BestSeller (){
 
       <div className="grid grid-cols-2 md:grid-cols-3 gap-5">
        {bestSellers.map(product => (
-        <ProductCard key={product.id} product={product} wishlisted={wishlist.includes(product.id)} onWishlist={toggleWishlist} />
+        <ProductCard key={product.id} product={product} wishlisted={wishlist.some(item => item.id === product.id)} onWishlist={() => toggleWishlist(product)} />
         ))}
       </div>
 

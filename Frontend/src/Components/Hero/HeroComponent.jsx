@@ -1,4 +1,5 @@
 import { BRAND, STATS } from "./heroData";
+import { Link } from "react-router-dom";
 
 export function HeroBackground() {
 
@@ -40,8 +41,8 @@ export function HeroCopy() {
 function HeroCTAs() {
  return (
   <div className="flex gap-3 flex-wrap">
-   <button className="px-7 py-3 bg-[#b8860b] text-[#fff8e7] text-[9px] tracking-[0.28em] uppercase transition-all duration-200 hover:bg-[#9a6f00] hover:-translate-y-px">Collection</button>
-   <button className="px-5 py-3 bg-transparent text-[#b8860b] border border-[#b8860b] text-[9px] tracking-[0.28em] uppercase transition-all duration-200 hover:bg-[#b8860b] hover:text-[#fff8e7]">Our Story</button>
+   <Link to="/collection" className="px-7 py-3 bg-[#b8860b] text-[#fff8e7] text-[9px] tracking-[0.28em] uppercase transition-all duration-200 hover:bg-[#9a6f00] hover:-translate-y-px inline-block text-center">Collection</Link>
+   <Link to="/about" className="px-5 py-3 bg-transparent text-[#b8860b] border border-[#b8860b] text-[9px] tracking-[0.28em] uppercase transition-all duration-200 hover:bg-[#b8860b] hover:text-[#fff8e7] inline-block text-center">Our Story</Link>
   </div>
   );
 }
