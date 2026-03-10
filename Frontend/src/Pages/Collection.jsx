@@ -1,23 +1,18 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { collectionProducts, CATEGORIES } from "../Data/CollectionData";
 import { Filter, Search, ChevronDown } from "lucide-react";
 import ProductCard from "../Components/ProductCard";
+import { ShopContext } from "../Context/ShopContext";
 
 const Collection = () => {
- const [wishlist, setWishlist] = useState([]);
+ const {wishlist, toggleWishlist, search, setSearch } = useContext(ShopContext);
  const [activeCategory, setActiveCategory] = useState('All');
  const [sortBy, setSortBy] = useState('Featured');
  const [isFilterOpen, setIsFilterOpen] = useState(false);
- const [searchQuery, setSearchQuery] = useState('');
-
- const toggleWishlist = (id) =>
-  setWishlist(prev =>
-    prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]
-  );
 
  let displayProducts = collectionProducts.filter(p => {
   const matchesCategory = activeCategory === 'All' || p.category === activeCategory;
-  const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase());
+  const matchesSearch = p.name.toLowerCase().includes((search || '').toLowerCase());
    return matchesCategory && matchesSearch;
   });
 
@@ -48,7 +43,7 @@ const Collection = () => {
     <div className={`${isFilterOpen ? 'block' : 'hidden'} lg:block w-full lg:w-72 flex-shrink-0 space-y-6 transition-all duration-300`}>
      <div className="bg-white/30 backdrop-blur-md rounded-2xl p-6 border border-[var(--gold-light)]/30 shadow-[0_4px_24px_0_rgba(184,134,11,0.06)]">
      <div className="relative">
-     <input type="text" placeholder="Search collection..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}  className="w-full bg-[#fff8e7]/60 border border-[var(--gold)]/30 rounded-xl py-3 pl-10 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--gold)]/50 transition-all text-[var(--ink)] placeholder:text-[var(--ink)]/40" />
+     <input type="text" placeholder="Search collection..." value={search} onChange={(e) => setSearch(e.target.value)}  className="w-full bg-[#fff8e7]/60 border border-[var(--gold)]/30 rounded-xl py-3 pl-10 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--gold)]/50 transition-all text-[var(--ink)] placeholder:text-[var(--ink)]/40" />
       <Search size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[var(--ink)]/40" />
      </div>
     </div>

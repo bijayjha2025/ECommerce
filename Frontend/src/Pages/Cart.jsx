@@ -1,23 +1,9 @@
-import { useState } from 'react'
-import { collectionProducts } from '../Data/CollectionData';
+import { useContext } from 'react'
+import { ShopContext } from '../Context/ShopContext';
 import { ShoppingBag, Trash2, Minus, Plus, ArrowRight, ShieldCheck } from 'lucide-react';
 
 const Cart = () => {
-  // Dummy data for cart items
- const [cartItems, setCartItems] = useState([
-    { ...collectionProducts[0], quantity: 1, size: 'M' },
-    { ...collectionProducts[2], quantity: 2, size: 'L' }
-  ]);
-
-  const updateQuantity = (id, newQuantity) => {
-   if(newQuantity < 1) return;
-   setCartItems(items => items.map(item => 
-       item.id === id ? { ...item, quantity: newQuantity } : item ));
-   }
-
-  const removeItem = (id) => {
-    setCartItems(items => items.filter(item => item.id !== id));
-  };
+  const { cartItems, updateQuantity, removeItem } = useContext(ShopContext);
   
   const subtotal = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
   const shipping = subtotal > 0 ? 500 : 0;
