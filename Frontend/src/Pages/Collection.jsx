@@ -5,7 +5,7 @@ import ProductCard from "../Components/ProductCard";
 import { ShopContext } from "../Context/ShopContext";
 
 const Collection = () => {
- const {wishlist, toggleWishlist, search, setSearch } = useContext(ShopContext);
+ const { wishlist, toggleWishlist, search, setSearch } = useContext(ShopContext);
  const [activeCategory, setActiveCategory] = useState('All');
  const [sortBy, setSortBy] = useState('Featured');
  const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -92,7 +92,7 @@ const Collection = () => {
      {displayProducts.length > 0 ? (
      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8">
       {displayProducts.map(product => (
-       <ProductCard key={product.id} product={product} wishlisted={wishlist.includes(product.id)} onWishlist={toggleWishlist} />
+       <ProductCard key={product.id} product={product} wishlisted={wishlist.some(item => item.id === product.id)} onWishlist={() => toggleWishlist(product)} />
       ))}
      </div>
      ) : (

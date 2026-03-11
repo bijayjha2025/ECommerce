@@ -12,6 +12,8 @@ import './index.css'
 import Footer from './Components/Footer'
 import Favorites from './Pages/Favorites'
 import MyAccount from './Pages/MyAccount'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const App = () => {
@@ -19,6 +21,7 @@ const App = () => {
     <div className='px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw] bg-gradient-to-tr
    from-[#c4a462] via-[#fcedbb] to-[#faae16] min-h-screen'>
 
+      <ToastContainer position="bottom-right" />
       <Navbar />
       
       <Routes>

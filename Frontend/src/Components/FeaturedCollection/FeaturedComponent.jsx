@@ -55,7 +55,7 @@ export default function FeaturedComponent() {
       
       <div ref={scrollRef} className="flex gap-5 overflow-x-auto pb-4 scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
       {filtered.map(product => (
-       <ProductCard key={product.id} product={product} wishlisted={wishlist.some(id => id === product.id)} onWishlist={() => toggleWishlist(product.id)} flex />
+       <ProductCard key={product.id} product={product} wishlisted={wishlist.some(id => id === product.id)} onWishlist={() => toggleWishlist(product)} flex />
       ))}
       </div>
      </div>

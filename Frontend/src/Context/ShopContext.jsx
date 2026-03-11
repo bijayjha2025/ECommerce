@@ -8,12 +8,8 @@ const ShopContextProvider = (props) => {
  const [wishlist, setWishlist] = useState([]);
  const [search, setSearch] = useState('');
  
- const addToCart = async (productData, size) => {
-   if (!size) {
-    toast.error('Select Product Size');
-    return;
-    }
-
+ const addToCart = async (productData, size = 'Standard') => {
+  
     let cartData = structuredClone(cartItems);
     
     const matchIndex = cartData.findIndex(

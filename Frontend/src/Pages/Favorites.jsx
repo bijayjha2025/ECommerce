@@ -1,9 +1,10 @@
 import { Heart } from 'lucide-react';
-import { collectionProducts } from '../Data/CollectionData';
+import { useContext } from 'react';
+import { ShopContext } from '../Context/ShopContext';
 import ProductCard from '../Components/ProductCard';
 
 const Favorites = () => {
- const favorites = [collectionProducts[1], collectionProducts[4], collectionProducts[6]]; // Dummy favorites data
+  const { wishlist, toggleWishlist } = useContext(ShopContext);
  
  return (
   <div className="pt-24 pb-20 px-4 sm:px-8 lg:px-12 max-w-7xl mx-auto min-h-screen">
@@ -18,7 +19,7 @@ const Favorites = () => {
     </div>
    </div>
 
-   {favorites.length === 0 ? (
+   {wishlist.length === 0 ? (
     <div className="bg-white/30 backdrop-blur-xl rounded-3xl p-16 text-center border border-[var(--gold-light)]/40 shadow-sm min-h-[400px] flex flex-col items-center justify-center">
      <Heart size={64} className="text-[var(--gold)]/50 mb-6" />
      <h2 className="text-2xl font-serif text-[var(--ink)] mb-3">No favorites yet</h2>
@@ -29,8 +30,8 @@ const Favorites = () => {
   ) : (
     
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8">
-     {favorites.map((product) => (
-      <ProductCard key={product.id} product={product} wishlisted={true} onWishlist={() => { }} />
+     {wishlist.map((product) => (
+      <ProductCard key={product.id} product={product} wishlisted={true} onWishlist={() => toggleWishlist(product)} />
     ))}
     </div>
     )}

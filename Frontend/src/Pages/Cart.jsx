@@ -50,7 +50,7 @@ const Cart = () => {
        <h3 className="text-lg sm:text-xl font-serif text-[var(--ink)] leading-snug pr-8">{item.name}</h3>
       </div>
 
-      <button onClick={() => removeItem(item.id)} className="absolute top-4 right-4 sm:relative sm:top-0 sm:right-0 p-2 text-[var(--ink)]/40 hover:text-red-500 hover:bg-red-50 rounded-full transition-colors" title="Remove Item">
+      <button onClick={() => removeItem(item.id, item.size)} className="absolute top-4 right-4 sm:relative sm:top-0 sm:right-0 p-2 text-[var(--ink)]/40 hover:text-red-500 hover:bg-red-50 rounded-full transition-colors" title="Remove Item">
        <Trash2 size={18} />
       </button>
      </div>
@@ -58,13 +58,13 @@ const Cart = () => {
 
      <div className="flex items-center justify-between mt-auto">
       <div className="flex items-center gap-3 bg-white/60 border border-[var(--gold)]/20 rounded-full px-3 py-1.5 w-max">
-       <button onClick={() => updateQuantity(item.id, item.quantity - 1)} className="w-6 h-6 flex items-center justify-center hover:bg-[var(--gold)]/20 rounded-full hover:text-[var(--gold-dark)] transition-colors disabled:opacity-30" disabled={item.quantity <= 1}>
+       <button onClick={() => updateQuantity(item.id, item.size, item.quantity - 1)} className="w-6 h-6 flex items-center justify-center hover:bg-[var(--gold)]/20 rounded-full hover:text-[var(--gold-dark)] transition-colors disabled:opacity-30" disabled={item.quantity <= 1}>
         <Minus size={14} />
        </button>
 
        <span className="w-6 text-center text-sm font-medium text-[var(--ink)]">{item.quantity}</span>
 
-       <button onClick={() => updateQuantity(item.id, item.quantity + 1)} className="w-6 h-6 flex items-center justify-center hover:bg-[var(--gold)]/20 rounded-full hover:text-[var(--gold-dark)] transition-colors">
+       <button onClick={() => updateQuantity(item.id, item.size, item.quantity + 1)} className="w-6 h-6 flex items-center justify-center hover:bg-[var(--gold)]/20 rounded-full hover:text-[var(--gold-dark)] transition-colors">
         <Plus size={14} />
        </button>
       </div>

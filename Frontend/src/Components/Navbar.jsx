@@ -69,12 +69,16 @@ const Navbar = () => {
 
        <Link to="/favorites" className='relative group'>
         <Heart size={20} className='text-[#0f172a] hover:text-[#b8860b] transition-colors duration-300' />
-        <span className='absolute -bottom-2 -right-2 bg-[#b8860b] text-white text-xs rounded-full w-4 h-4 flex items-center justify-center font-bold'>3</span>
+        {wishlist.length > 0 && (
+         <span className='absolute -bottom-2 -right-2 bg-[#b8860b] text-white text-xs rounded-full w-4 h-4 flex items-center justify-center font-bold'>{wishlist.length}</span>
+        )}
        </Link>
 
        <Link to="/cart" className='relative group'>
        <ShoppingCart size={20} className='text-[#0f172a] hover:text-[#b8860b] transition-colors duration-300' />
-        <span className='absolute -bottom-2 -right-2 bg-[#b8860b] text-white text-xs rounded-full w-4 h-4 flex items-center justify-center font-bold'>3</span>
+       {getCartCount() > 0 && (
+        <span className='absolute -bottom-2 -right-2 bg-[#b8860b] text-white text-xs rounded-full w-4 h-4 flex items-center justify-center font-bold'>{getCartCount()}</span>
+       )}
       </Link>
 
       <div className='group relative hidden sm:block'>

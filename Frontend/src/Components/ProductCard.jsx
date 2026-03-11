@@ -54,7 +54,7 @@ export default function ProductCard({ product, wishlisted, onWishlist, flex = fa
     </button>
 
     <div className={`absolute bottom-0 left-0 right-0 transition-transform duration-300 ${hovered ? 'translate-y-0' : 'translate-y-full'}`}>
-     <button className="w-full py-3 bg-[#1a0a00] text-[#ffcb63] text-[9px] tracking-[0.28em] uppercase font-serif flex items-center justify-center gap-2 hover:bg-[#b8860b] hover:text-[#fff8e7] transition-colors duration-200">
+     <button onClick={(e) => { e.stopPropagation(); addToCart(product, 'Standard'); }} className="w-full py-3 bg-[#1a0a00] text-[#ffcb63] text-[9px] tracking-[0.28em] uppercase font-serif flex items-center justify-center gap-2 hover:bg-[#b8860b] hover:text-[#fff8e7] transition-colors duration-200">
       <ShoppingCart size={13} />Add to Cart
      </button>
     </div>

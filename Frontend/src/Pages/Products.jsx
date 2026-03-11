@@ -1,16 +1,14 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { collectionProducts, CATEGORIES } from '../Data/CollectionData';
 import ProductCard from '../Components/ProductCard'
 import { Filter, ChevronDown } from 'lucide-react';
+import { ShopContext } from '../Context/ShopContext';
 
 const Products = () => {
- const [wishlist, setWishlist] = useState([]);
+ const { wishlist, toggleWishlist } = useContext(ShopContext);
  const [activeCategory, setActiveCategory] = useState('All');
  const [sortBy, setSortBy] = useState('Featured');
  const [isFilterOpen, setIsFilterOpen] = useState(false);
-
- const toggleWishlist = (id) =>
-  setWishlist(prev => prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id] );
 
  let displayProducts = activeCategory === 'All' ? collectionProducts : collectionProducts.filter(p => p.category === activeCategory);
  
@@ -73,7 +71,7 @@ const Products = () => {
    {displayProducts.length > 0 ? (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 xl:gap-8">
      {displayProducts.map(product => (
-      <ProductCard key={product.id} product={product} wishlisted={wishlist.includes(product.id)} onWishlist={toggleWishlist} />
+      <ProductCard key={product.id} product={product} wishlisted={wishlist.some( item => item.id ===product.id)}  onWishlist={() => toggleWishlist(product) } />
       ))}
     </div>
     ) : (
