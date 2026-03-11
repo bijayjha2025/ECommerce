@@ -25,6 +25,11 @@ import C16 from './sherpaWomen.jpg';
 import C17 from './sherwani.jpg';
 import C18 from './tamangHat.jpg';
 
+import C19 from './corsetSari.jpg';
+import C20 from './palpaliCap.jpg';
+import C21 from './thakaliDress.jpg';
+import C22 from './tharuDress.jpg';
+
 import craftStoryBg from './craftStory.png';
 
 import A1 from './artist1.png';
@@ -81,4 +86,8 @@ export const collectionImages = {
     C16,
     C17,
     C18,
+    C19,
+    C20,
+    C21,
+    C22,
 }
