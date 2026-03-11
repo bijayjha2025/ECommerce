@@ -1,6 +1,7 @@
 import { useContext } from 'react'
 import { ShopContext } from '../Context/ShopContext';
 import { ShoppingBag, Trash2, Minus, Plus, ArrowRight, ShieldCheck } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const Cart = () => {
   const { cartItems, updateQuantity, removeItem } = useContext(ShopContext);
@@ -8,6 +9,25 @@ const Cart = () => {
   const subtotal = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
   const shipping = subtotal > 0 ? 500 : 0;
   const total = subtotal + shipping;
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.1 }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, scale: 0.95, y: 20 },
+    visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.5 } }
+  };
+
+  const panelVariants = {
+    hidden: { opacity: 0, x: 30 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.6, delay: 0.3 } }
+  }
+
 
   return (
    <div className="pt-24 pb-20 px-4 sm:px-8 lg:px-12 max-w-7xl mx-auto min-h-screen">
@@ -31,9 +51,12 @@ const Cart = () => {
    ) : (
     
    <div className="flex flex-col lg:flex-row gap-10">
-    <div className="flex-1 space-y-6">
+    <motion.div className="flex-1 space-y-6" variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+          >
     {cartItems.map((item) => (
-    <div key={item.id} className="bg-white/40 backdrop-blur-md rounded-2xl p-4 sm:p-6 border border-[var(--gold-light)]/40 shadow-sm hover:shadow-md transition-shadow flex flex-col sm:flex-row gap-6 relative group">
+    <motion.div key={item.id + item.size} variants={itemVariants} className="bg-white/40 backdrop-blur-md rounded-2xl p-4 sm:p-6 border border-[var(--gold-light)]/40 shadow-sm hover:shadow-md transition-shadow flex flex-col sm:flex-row gap-6 relative group">
 
     <div className="w-full sm:w-32 h-32 sm:h-32 rounded-xl overflow-hidden bg-[var(--gold)]/10 flex-shrink-0">
      {item.image ? (
@@ -77,11 +100,14 @@ const Cart = () => {
       </div>
      </div>
      </div>
-     </div>
+     </motion.div>
      ))}
-    </div>
+    </motion.div>
 
-    <div className="w-full lg:w-[380px] flex-shrink-0">
+    <motion.div className="w-full lg:w-[380px] flex-shrink-0" variants={panelVariants}
+            initial="hidden"
+            animate="visible"
+>
      <div className="bg-white/70 backdrop-blur-xl rounded-3xl p-8 border border-[var(--gold-light)]/50 shadow-[0_8px_32px_0_rgba(184,134,11,0.1)] sticky top-24">
      <h3 className="text-xl font-serif text-[var(--ink)] mb-6 pb-4 border-b border-[var(--gold)]/20">Order Summary</h3>
 
@@ -118,7 +144,7 @@ const Cart = () => {
       <span>Secure Checkout</span>
      </div>
      </div>
-     </div>
+     </motion.div>
      
      </div>
     )}

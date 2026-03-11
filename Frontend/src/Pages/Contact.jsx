@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { MapPin, Phone, Mail, Clock, Send  } from "lucide-react";
+import { motion } from "framer-motion";
 
 const Contact = () => {
  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
@@ -13,19 +14,35 @@ const Contact = () => {
                      setFormData({ name: "", email: "", message: "" });
   }};
 
+  const fadeUpVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+  };
+
+  const staggerContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.15 }
+    }
+  };
+
   return (
-   <div className="pt-24 pb-20 px-4 sm:px-8 lg:px-12 max-w-7xl mx-auto min-h-screen">
-    <div className="text-center mb-16 lg:mb-20">
+   <motion.div className="pt-24 pb-20 px-4 sm:px-8 lg:px-12 max-w-7xl mx-auto min-h-screen"
+      initial="hidden"
+      animate="visible"
+      variants={staggerContainer}>
+    <motion.div variants={fadeUpVariants} className="text-center mb-16 lg:mb-20">
      <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif text-[var(--ink)] mb-4 tracking-tight">Get in Touch</h1>
      
      <div className="w-24 h-1 bg-gradient-to-r from-[var(--gold-dark)] to-[var(--gold-light)] mx-auto rounded-full mb-6 relative">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-[var(--gold)] rounded-full"></div>
      </div>
      <p className="text-[var(--ink)]/70 max-w-xl mx-auto text-base sm:text-lg">Whether you have a question about a piece, want to discuss a custom order, or simply wish to say hello, we are here for you.</p>
-    </div>
+    </motion.div>
 
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
-     <div className="space-y-8">
+     <motion.div variants={fadeUpVariants} className="space-y-8">
       <div className="bg-white/20 backdrop-blur-md rounded-3xl p-8 sm:p-10 border border-[var(--gold-light)]/40 shadow-[0_8px_32px_0_rgba(184,134,11,0.1)] relative overflow-hidden h-full">
       <div className="absolute -top-24 -right-24 w-64 h-64 bg-gradient-to-bl from-[var(--gold)]/20 to-transparent rounded-full blur-2xl"></div>
       <h3 className="text-2xl font-serif text-[var(--ink)] mb-8 pb-4 border-b border-[var(--gold)]/20">Our Atelier</h3>
@@ -78,9 +95,9 @@ const Contact = () => {
         </div>
        </div>
       </div>
-     </div>
+     </motion.div>
 
-     <div>
+     <motion.div variants={fadeUpVariants}>
       <div className="bg-white/30 backdrop-blur-xl rounded-3xl p-8 sm:p-10 border border-[var(--gold-light)]/50 shadow-[0_12px_48px_0_rgba(184,134,11,0.15)] relative">
       <div className="absolute -top-3 left-8 px-4 py-1 bg-[var(--gold-dark)] text-[#fff8e7] text-xs font-bold tracking-[0.2em] uppercase rounded-full shadow-md">Send a Message</div>
 
@@ -112,10 +129,10 @@ const Contact = () => {
         </form>
         )}
        </div>
-      </div>
+      </motion.div>
 
     </div>
-   </div>
+   </motion.div>
   )
 }
 

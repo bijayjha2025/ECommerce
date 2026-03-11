@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { User, Mail, Lock, ArrowRight, Loader2   } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const Login = () => {
  const [isLogin, setIsLogin] = useState(true);
@@ -47,7 +48,9 @@ const Login = () => {
 
   return (
    <div className="min-h-[80vh] flex items-center justify-center -mt-10 sm:-mt-20 px-4">
-    <div className="w-full max-w-md p-8 sm:p-10 rounded-2xl bg-white/20 backdrop-blur-md border border-[var(--gold-light)]/30 shadow-[0_8px_32px_0_rgba(184,134,11,0.2)]">
+    <motion.div className="w-full max-w-md p-8 sm:p-10 rounded-2xl bg-white/20 backdrop-blur-md border border-[var(--gold-light)]/30 shadow-[0_8px_32px_0_rgba(184,134,11,0.2)]" initial={{ opacity: 0, scale: 0.95, y: 20 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        transition={{ duration: 0.5, type: 'spring', stiffness: 100 }}>
     
     <div className="text-center mb-8">
      <h2 className="text-3xl font-serif text-[var(--ink)] mb-2">{isLogin ? 'Welcome Back' : 'Create Account'}</h2>
@@ -105,7 +108,7 @@ const Login = () => {
        {isLogin ? 'Create one' : 'Sign in'}
       </button>
      </div>
-    </div>
+    </motion.div>
    </div>
   )
 }

@@ -4,6 +4,7 @@ import ProductCard from '../ProductCard';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { ShopContext } from '../../Context/ShopContext';
+import { motion } from 'framer-motion';
 
 export default function FeaturedComponent() {
   const [activeCategory, setActiveCategory] = useState('All');
@@ -16,8 +17,26 @@ export default function FeaturedComponent() {
     scrollRef.current?.scrollBy({ left: dir === 'left' ? -300 : 300, behavior: 'smooth' });
   };
 
+  const containerVariants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: "easeOut", staggerChildren: 0.1 }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, scale: 0.95 },
+    visible: { opacity: 1, scale: 1, transition: { duration: 0.5 } }
+  };
+
   return (
-   <section className="py-16 px-4">
+   <motion.section initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.1 }}
+      variants={containerVariants}
+      className="py-16 px-4">
     <div className="mb-8 flex items-end justify-between max-w-[1120px] mx-auto">
      <div>
       <div className="inline-flex items-center gap-3 mb-3">
@@ -55,7 +74,9 @@ export default function FeaturedComponent() {
       
       <div ref={scrollRef} className="flex gap-5 overflow-x-auto pb-4 scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
       {filtered.map(product => (
-       <ProductCard key={product.id} product={product} wishlisted={wishlist.some(id => id === product.id)} onWishlist={() => toggleWishlist(product)} flex />
+       <motion.div key={product.id} variants={itemVariants}>
+       <ProductCard product={product} wishlisted={wishlist.some(id => id === product.id)} onWishlist={() => toggleWishlist(product)} flex />
+       </motion.div>
       ))}
       </div>
      </div>
@@ -63,6 +84,6 @@ export default function FeaturedComponent() {
      <div className="flex justify-center mt-10">
       <Link to="/collection" className="font-serif text-[10px] tracking-[0.3em] uppercase text-[#b8860b] border-b border-[#b8860b]/40 pb-0.5 hover:border-[#b8860b] transition-colors duration-200">View Full Collection →</Link>
      </div>
-    </section>
+    </motion.section>
   );
 }

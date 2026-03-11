@@ -15,6 +15,8 @@ function ImagePlaceholder() {
  );
 }
 
+import { motion } from 'framer-motion';
+
 export default function ProductCard({ product, wishlisted, onWishlist, flex = false }) {
   const [hovered, setHovered] = useState(false);
   const { addToCart } = useContext(ShopContext);
@@ -23,10 +25,16 @@ export default function ProductCard({ product, wishlisted, onWishlist, flex = fa
   const lowStock  = stock <= 3;
 
   return (
-   <div className={`relative rounded-sm overflow-hidden bg-[#fffbf2] cursor-pointer ${flex ? 'flex-none w-[220px] sm:w-[260px]' : 'w-full'}`}
+   <motion.div className={`relative rounded-sm overflow-hidden bg-[#fffbf2] cursor-pointer ${flex ? 'flex-none w-[220px] sm:w-[260px]' : 'w-full'}`}
       style={{ boxShadow: hovered ? '0 20px 48px rgba(20,8,0,0.18)' : '0 4px 16px rgba(20,8,0,0.08)',
                transition: 'box-shadow 0.3s ease, transform 0.3s ease',
                transform: hovered ? 'translateY(-4px)' : 'translateY(0)',
+      }}
+      initial={{ boxShadow: '0 4px 16px rgba(20,8,0,0.08)', y: 0 }}
+      whileHover={{
+        boxShadow: '0 20px 48px rgba(20,8,0,0.18)',
+        y: -6,
+        transition: { type: "spring", stiffness: 300, damping: 20 }
       }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -76,6 +84,6 @@ export default function ProductCard({ product, wishlisted, onWishlist, flex = fa
     )
     }
     </div>
-   </div>
+   </motion.div>
   );
 }

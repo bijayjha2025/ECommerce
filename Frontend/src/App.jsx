@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import Home from './Pages/Home'
 import About from './Pages/About'
 import Contact from './Pages/Contact'
@@ -14,9 +14,21 @@ import Favorites from './Pages/Favorites'
 import MyAccount from './Pages/MyAccount'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
+import { AnimatePresence, motion } from 'framer-motion'
 
+const PageTransition = ({ children }) => {
+  return(
+   <motion.div
+      initial={{ opacity: 0, y: 15 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -15 }}
+      transition={{ duration: 0.4, ease: "easeOut" }}>{children}</motion.div>
+  );
+}
 
 const App = () => {
+  const location = useLocation();
+
   return (
     <div className='px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw] bg-gradient-to-tr
    from-[#c4a462] via-[#fcedbb] to-[#faae16] min-h-screen'>
@@ -24,18 +36,23 @@ const App = () => {
       <ToastContainer position="bottom-right" />
       <Navbar />
       
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/about' element={<About />} />
-        <Route path='/contact' element={<Contact />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/collection' element={<Collection />} />
-        <Route path='/cart' element={<Cart />} />
-        <Route path='/products' element={<Products />} />
-        <Route path='/orders' element={<Orders />} />
-        <Route path='/favorites' element={<Favorites />} />
-        <Route path='/myaccount' element={<MyAccount />} />
+      <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
+
+        <Route path='/' element={<PageTransition><Home /> </PageTransition>} />
+        <Route path='/about' element={<PageTransition><About /> </PageTransition>} />
+        <Route path='/contact' element={<PageTransition><Contact /> </PageTransition>} />
+        <Route path='/login' element={<PageTransition><Login /> </PageTransition>} />
+        <Route path='/collection' element={<PageTransition><Collection /> </PageTransition>} />
+
+        <Route path='/cart' element={<PageTransition><Cart /> </PageTransition>} />
+        <Route path='/products' element={<PageTransition><Products /> </PageTransition>} />
+        <Route path='/orders' element={<PageTransition><Orders /> </PageTransition>} />
+        <Route path='/favorites' element={<PageTransition><Favorites /> </PageTransition>} />
+
+        <Route path='/myaccount' element={<PageTransition><MyAccount /> </PageTransition>} />
       </Routes>
+      </AnimatePresence>
 
       <Footer />
 

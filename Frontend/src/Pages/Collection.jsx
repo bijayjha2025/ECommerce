@@ -3,6 +3,7 @@ import { collectionProducts, CATEGORIES } from "../Data/CollectionData";
 import { Filter, Search, ChevronDown } from "lucide-react";
 import ProductCard from "../Components/ProductCard";
 import { ShopContext } from "../Context/ShopContext";
+import { motion } from "framer-motion";
 
 const Collection = () => {
  const { wishlist, toggleWishlist, search, setSearch } = useContext(ShopContext);
@@ -21,6 +22,19 @@ const Collection = () => {
   } else if (sortBy === 'Price: High to Low') {
     displayProducts.sort((a, b) => b.price - a.price);
   }
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.1 }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, scale: 0.95, y: 30 },
+    visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.5 } }
+  };
 
  return (
   <div className="pt-24 pb-16 px-4 sm:px-8 lg:px-12 max-w-[1400px] mx-auto min-h-screen">
@@ -90,11 +104,16 @@ const Collection = () => {
      </div>
 
      {displayProducts.length > 0 ? (
-     <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8">
+     <motion.div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8" variants={containerVariants}
+              initial="hidden"
+              animate="visible"
+>
       {displayProducts.map(product => (
-       <ProductCard key={product.id} product={product} wishlisted={wishlist.some(item => item.id === product.id)} onWishlist={() => toggleWishlist(product)} />
+       <motion.div key={product.id} variants={itemVariants}>
+        <ProductCard product={product} wishlisted={wishlist.some(item => item.id === product.id)} onWishlist={() => toggleWishlist(product)} />
+       </motion.div>
       ))}
-     </div>
+     </motion.div>
      ) : (
      
      <div className="text-center py-32 bg-white/20 backdrop-blur-sm rounded-3xl border border-dashed border-[var(--gold)]/40">

@@ -2,9 +2,24 @@ import { Heart } from 'lucide-react';
 import { useContext } from 'react';
 import { ShopContext } from '../Context/ShopContext';
 import ProductCard from '../Components/ProductCard';
+import { motion } from 'framer-motion';
 
 const Favorites = () => {
   const { wishlist, toggleWishlist } = useContext(ShopContext);
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.1 }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, scale: 0.95, y: 30 },
+    visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.5 } }
+  };
+
  
  return (
   <div className="pt-24 pb-20 px-4 sm:px-8 lg:px-12 max-w-7xl mx-auto min-h-screen">
@@ -29,11 +44,16 @@ const Favorites = () => {
 
   ) : (
     
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8">
+    <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8" variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
      {wishlist.map((product) => (
-      <ProductCard key={product.id} product={product} wishlisted={true} onWishlist={() => toggleWishlist(product)} />
+      <motion.div key={product.id} variants={itemVariants}>
+      <ProductCard product={product} wishlisted={true} onWishlist={() => toggleWishlist(product)} />
+      </motion.div>
     ))}
-    </div>
+    </motion.div>
     )}
   </div>
   )

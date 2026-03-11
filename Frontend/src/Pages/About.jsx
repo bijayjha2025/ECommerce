@@ -1,23 +1,47 @@
 import { Sparkles, Award, Gem, Users } from "lucide-react";
 import { artistAssets } from "../assets/assets";
+import { motion } from "framer-motion";
+
+const fadeUpVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.2 }
+  }
+};
 
 const About = () => {
  return (
   <div className="pt-24 pb-20 px-4 sm:px-8 lg:px-12 max-w-7xl mx-auto min-h-screen">
 
-   <div className="text-center mb-16 lg:mb-24">
-   <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif text-[var(--ink)] mb-6 tracking-tight">Our Heritage, <br className="hidden sm:block" /><span className="italic text-[var(--gold-dark)]">Your Legacy</span>
-   </h1>
+  <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={staggerContainer}
+        className="text-center mb-16 lg:mb-24"
+      >
+   <motion.h1 variants={fadeUpVariants} className="text-4xl sm:text-5xl lg:text-6xl font-serif text-[var(--ink)] mb-6 tracking-tight">Our Heritage, <br className="hidden sm:block" /><span className="italic text-[var(--gold-dark)]">Your Legacy</span>
+   </motion.h1>
 
-   <div className="w-24 h-1 bg-gradient-to-r from-[var(--gold-dark)] to-[var(--gold-light)] mx-auto rounded-full mb-8 relative">
+   <motion.div variants={fadeUpVariants} className="w-24 h-1 bg-gradient-to-r from-[var(--gold-dark)] to-[var(--gold-light)] mx-auto rounded-full mb-8 relative">
     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-[var(--gold)] rounded-full border-4 border-[#fffbf2]"></div>
-   </div>
+   </motion.div>
 
-   <p className="text-[var(--ink)]/70 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed">Since our establishment, we have been the custodians of traditional craftsmanship, weaving stories of elegance, culture, and timeless beauty into every thread.</p>
-   </div>
+   <motion.p variants={fadeUpVariants} className="text-[var(--ink)]/70 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed">Since our establishment, we have been the custodians of traditional craftsmanship, weaving stories of elegance, culture, and timeless beauty into every thread.</motion.p>
+   </motion.div>
 
-   <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center mb-24">
-    <div className="relative group">
+   <motion.div initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={staggerContainer}
+        className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center mb-24">
+    <motion.div variants={fadeUpVariants} className="relative group">
      <div className="absolute -inset-4 bg-gradient-to-tr from-[var(--gold)]/20 to-transparent rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500 opacity-50"></div>
      
      <div className="relative h-[400px] sm:h-[500px] w-full bg-white/20 backdrop-blur-sm rounded-3xl border border-[var(--gold-light)]/30 overflow-hidden shadow-[0_8px_32px_0_rgba(184,134,11,0.15)] flex items-center justify-center group-hover:border-[var(--gold)]/50 transition-all duration-500">
@@ -30,25 +54,25 @@ const About = () => {
       <p className="text-[var(--gold-light)]/70 mt-2 text-sm max-w-xs mx-auto">Where tradition meets contemporary elegance.</p>
      </div>
     </div>
-   </div>
+   </motion.div>
 
    <div className="space-y-8 lg:pl-10 relative z-10 mt-12 lg:mt-0">
 
     <div>
-     <h3 className="text-sm font-bold tracking-[0.3em] uppercase text-[var(--gold-dark)] mb-3 flex items-center gap-4"><span className="w-8 h-px bg-[var(--gold-dark)]"></span> The Beginning</h3>
-     <h2 className="text-3xl font-serif text-[var(--ink)] leading-snug mb-4">Why We Started</h2>
-     <p className="text-[var(--ink)]/70 leading-relaxed mb-8 text-justify">It began in a small workshop nestled in the heart of the city. As mass-produced, fast fashion began to flood the markets, we saw generations of traditional weaving knowledge slowly fading away. WearNepal was born from a singular, passionate vision: to rescue and breathe new life into the intricate art of Nepali handloom weaving, transforming it from a dying craft into a hallmark of modern luxury and authenticity.</p>
+     <motion.h3 variants={fadeUpVariants} className="text-sm font-bold tracking-[0.3em] uppercase text-[var(--gold-dark)] mb-3 flex items-center gap-4"><span className="w-8 h-px bg-[var(--gold-dark)]"></span> The Beginning</motion.h3>
+     <motion.h2 variants={fadeUpVariants} className="text-3xl font-serif text-[var(--ink)] leading-snug mb-4">Why We Started</motion.h2>
+     <motion.p variants={fadeUpVariants} className="text-[var(--ink)]/70 leading-relaxed mb-8 text-justify">It began in a small workshop nestled in the heart of the city. As mass-produced, fast fashion began to flood the markets, we saw generations of traditional weaving knowledge slowly fading away. WearNepal was born from a singular, passionate vision: to rescue and breathe new life into the intricate art of Nepali handloom weaving, transforming it from a dying craft into a hallmark of modern luxury and authenticity.</motion.p>
 
-     <h3 className="text-sm font-bold tracking-[0.3em] uppercase text-[var(--gold-dark)] mb-3 flex items-center gap-4"><span className="w-8 h-px bg-[var(--gold-dark)]"></span> Our Present</h3>
-     <h2 className="text-3xl font-serif text-[var(--ink)] leading-snug mb-4">Where We Are Today</h2>
-     <p className="text-[var(--ink)]/70 leading-relaxed mb-8 text-justify">Today, we are proud to partner directly with over fifty generational artisans across the country. By sourcing the finest materials natively—from soft Himalayan Pashmina to resilient Allo fibers—we ensure that every garment we curate is a masterpiece of ethical, fair-trade craftsmanship. Our collections are now worn globally by those who appreciate the profound respect for art that goes into every hour of our meticulous labor.</p>
+     <motion.h3 variants={fadeUpVariants} className="text-sm font-bold tracking-[0.3em] uppercase text-[var(--gold-dark)] mb-3 flex items-center gap-4"><span className="w-8 h-px bg-[var(--gold-dark)]"></span> Our Present</motion.h3>
+     <motion.h2 variants={fadeUpVariants} className="text-3xl font-serif text-[var(--ink)] leading-snug mb-4">Where We Are Today</motion.h2>
+     <motion.p variants={fadeUpVariants} className="text-[var(--ink)]/70 leading-relaxed mb-8 text-justify">Today, we are proud to partner directly with over fifty generational artisans across the country. By sourcing the finest materials natively—from soft Himalayan Pashmina to resilient Allo fibers—we ensure that every garment we curate is a masterpiece of ethical, fair-trade craftsmanship. Our collections are now worn globally by those who appreciate the profound respect for art that goes into every hour of our meticulous labor.</motion.p>
 
-     <h3 className="text-sm font-bold tracking-[0.3em] uppercase text-[var(--gold-dark)] mb-3 flex items-center gap-4"><span className="w-8 h-px bg-[var(--gold-dark)]"></span> The Horizon</h3>
-     <h2 className="text-3xl font-serif text-[var(--ink)] leading-snug mb-4">What We Aim to Achieve</h2>
-     <p className="text-[var(--ink)]/70 leading-relaxed text-justify">Our journey is far from over. Our ultimate goal is to establish Nepali heritage textiles as a globally recognized pillar of high fashion, bridging the gap between ancestral techniques and contemporary, sustainable design. We envision a future where every young artisan sees immense pride and viable prosperity in their craft, ensuring these beautiful stories in silk and gold endure for the generations to come.</p>
+     <motion.h3 variants={fadeUpVariants} className="text-sm font-bold tracking-[0.3em] uppercase text-[var(--gold-dark)] mb-3 flex items-center gap-4"><span className="w-8 h-px bg-[var(--gold-dark)]"></span> The Horizon</motion.h3>
+     <motion.h2 variants={fadeUpVariants} className="text-3xl font-serif text-[var(--ink)] leading-snug mb-4">What We Aim to Achieve</motion.h2>
+     <motion.p variants={fadeUpVariants} className="text-[var(--ink)]/70 leading-relaxed text-justify">Our journey is far from over. Our ultimate goal is to establish Nepali heritage textiles as a globally recognized pillar of high fashion, bridging the gap between ancestral techniques and contemporary, sustainable design. We envision a future where every young artisan sees immense pride and viable prosperity in their craft, ensuring these beautiful stories in silk and gold endure for the generations to come.</motion.p>
     </div>
    </div>
-   </div>
+   </motion.div>
 
    <div className="bg-white/30 backdrop-blur-xl rounded-3xl p-8 sm:p-12 border border-[var(--gold-light)]/40 shadow-[0_8px_40px_rgba(184,134,11,0.08)] relative overflow-hidden">
     <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-[var(--gold)]/10 to-transparent rounded-full -translate-y-1/2 translate-x-1/2"></div>
@@ -95,36 +119,41 @@ const About = () => {
     </p>
    </div>
    
-   <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
-    <div className="bg-white/40 backdrop-blur-md rounded-3xl p-8 sm:p-10 border border-[var(--gold-light)]/40 shadow-sm hover:shadow-[0_12px_40px_rgba(184,134,11,0.1)] transition-all duration-500 group relative overflow-hidden">
+   <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={staggerContainer}
+          className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+    <motion.div variants={fadeUpVariants} className="bg-white/40 backdrop-blur-md rounded-3xl p-8 sm:p-10 border border-[var(--gold-light)]/40 shadow-sm hover:shadow-[0_12px_40px_rgba(184,134,11,0.1)] transition-all duration-500 group relative overflow-hidden">
     <div className="absolute -right-10 -bottom-10 w-40 h-40 bg-[var(--gold)]/10 rounded-full blur-2xl group-hover:bg-[var(--gold)]/20 transition-colors"></div>
      <h3 className="text-2xl font-serif text-[var(--ink)] mb-2">Himalayan Pashmina</h3>
      <p className="text-xs font-bold tracking-[0.2em] uppercase text-[var(--gold-dark)] mb-4">The Soft Gold</p>
      <p className="text-[var(--ink)]/70 leading-relaxed text-sm sm:text-base">Rarer and finer than cashmere, true Himalayan Pashmina comes from the Chyangra mountain goats of the high-altitude plateaus. We hand-spin and hand-weave this delicate fiber into incredibly warm, weightless textiles that drape like water.</p>
-    </div>
+    </motion.div>
 
-    <div className="bg-white/40 backdrop-blur-md rounded-3xl p-8 sm:p-10 border border-[var(--gold-light)]/40 shadow-sm hover:shadow-[0_12px_40px_rgba(184,134,11,0.1)] transition-all duration-500 group relative overflow-hidden">
+    <motion.div variants={fadeUpVariants} className="bg-white/40 backdrop-blur-md rounded-3xl p-8 sm:p-10 border border-[var(--gold-light)]/40 shadow-sm hover:shadow-[0_12px_40px_rgba(184,134,11,0.1)] transition-all duration-500 group relative overflow-hidden">
     <div className="absolute -right-10 -bottom-10 w-40 h-40 bg-[var(--gold)]/10 rounded-full blur-2xl group-hover:bg-[var(--gold)]/20 transition-colors"></div>
      <h3 className="text-2xl font-serif text-[var(--ink)] mb-2">Palpali Dhaka</h3>
      <p className="text-xs font-bold tracking-[0.2em] uppercase text-[var(--gold-dark)] mb-4">The Geometric Tapestry</p>
      <p className="text-[var(--ink)]/70 leading-relaxed text-sm sm:text-base">An iconic symbol of Nepali pride, Dhaka is an exceptionally complex handloom cotton fabric. Woven uniquely without a pre-set pattern, artisans create striking, vibrant geometric arrays completely from memory, making every inch truly one-of-a-kind.</p>
-    </div>
+    </motion.div>
 
-    <div className="bg-white/40 backdrop-blur-md rounded-3xl p-8 sm:p-10 border border-[var(--gold-light)]/40 shadow-sm hover:shadow-[0_12px_40px_rgba(184,134,11,0.1)] transition-all duration-500 group relative overflow-hidden">
+    <motion.div variants={fadeUpVariants} className="bg-white/40 backdrop-blur-md rounded-3xl p-8 sm:p-10 border border-[var(--gold-light)]/40 shadow-sm hover:shadow-[0_12px_40px_rgba(184,134,11,0.1)] transition-all duration-500 group relative overflow-hidden">
     <div className="absolute -right-10 -bottom-10 w-40 h-40 bg-[var(--gold)]/10 rounded-full blur-2xl group-hover:bg-[var(--gold)]/20 transition-colors"></div>
      <h3 className="text-2xl font-serif text-[var(--ink)] mb-2">Wild Allo (Giant Nettle)</h3>
      <p className="text-xs font-bold tracking-[0.2em] uppercase text-[var(--gold-dark)] mb-4">The Forest Silk</p>
      <p className="text-[var(--ink)]/70 leading-relaxed text-sm sm:text-base">Harvested sustainably from the deep forests of the Sankhuwasabha region, Allo is a majestic, long-lasting natural bast fiber. It provides a beautiful, slightly coarse organic texture that softens gracefully with every wear, telling the story of the wild Himalayas.</p>
-    </div>
+    </motion.div>
 
-    <div className="bg-white/40 backdrop-blur-md rounded-3xl p-8 sm:p-10 border border-[var(--gold-light)]/40 shadow-sm hover:shadow-[0_12px_40px_rgba(184,134,11,0.1)] transition-all duration-500 group relative overflow-hidden">
+    <motion.div variants={fadeUpVariants} className="bg-white/40 backdrop-blur-md rounded-3xl p-8 sm:p-10 border border-[var(--gold-light)]/40 shadow-sm hover:shadow-[0_12px_40px_rgba(184,134,11,0.1)] transition-all duration-500 group relative overflow-hidden">
     <div className="absolute -right-10 -bottom-10 w-40 h-40 bg-[var(--gold)]/10 rounded-full blur-2xl group-hover:bg-[var(--gold)]/20 transition-colors"></div>
      <h3 className="text-2xl font-serif text-[var(--ink)] mb-2">Himalayan Hemp</h3>
      <p className="text-xs font-bold tracking-[0.2em] uppercase text-[var(--gold-dark)] mb-4">The Enduring Fiber</p>
      <p className="text-[var(--ink)]/70 leading-relaxed text-sm sm:text-base">Cultivated organically by mountain communities, our Hemp is incredibly resilient, breathable, and naturally anti-microbial. It represents the pinnacle of ancient sustainable agriculture, yielding fabrics that last lifetimes while returning safely to the earth.</p>
-    </div>
+    </motion.div>
 
-    </div>
+    </motion.div>
    </div>
 
    <div className="mt-28">

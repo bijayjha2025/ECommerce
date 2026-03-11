@@ -18,23 +18,46 @@ export function HeroBackground() {
   );
 }
 
+import { motion } from "framer-motion";
+
 export function HeroCopy() {
+ const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.15, delayChildren: 0.2 }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
+    }
+  };
+
  return (
-  <div className="flex-1 min-w-[300px] max-w-[420px] font-serif">
+  <motion.div className="flex-1 min-w-[300px] max-w-[420px] font-serif" variants={containerVariants} initial="hidden" animate="visible">
    
-   <div className="inline-flex items-center gap-3 mb-6">
+   <motion.div variants={itemVariants} className="inline-flex items-center gap-3 mb-6">
     <div className="w-6 h-px bg-[#b8860b]" />
      <p className="text-[9px] tracking-[0.4em] text-[#b8860b] uppercase">{BRAND} · 2026</p>
     <div className="w-6 h-px bg-[#b8860b]" />
-   </div>
+   </motion.div>
    
-   <h1 className="font-normal leading-[1.1] text-[#1a0a00] tracking-tight mb-2 text-[clamp(2.2rem,4.5vw,3.8rem)]">Wear the Soul<br /><em className="not-italic italic text-[#b8860b]">of Nepal</em></h1>
+   <motion.h1 variants={itemVariants} className="font-normal leading-[1.1] text-[#1a0a00] tracking-tight mb-2 text-[clamp(2.2rem,4.5vw,3.8rem)]">Wear the Soul<br /><em className="not-italic italic text-[#b8860b]">of Nepal</em></motion.h1>
    
-   <div className="w-10 h-[1.5px] bg-[#b8860b] my-5" />
-    <p className="text-[13.5px] leading-[1.9] text-[#1a0a00]/60 mb-9">From the hand-loomed Dhaka of Palpa to the soft<br />warmth of Himalayan Pashmina — each garment<br />carries a story woven across generations.</p>
-    <HeroCTAs />
+   <motion.div variants={itemVariants} className="w-10 h-[1.5px] bg-[#b8860b] my-5" />
+    <motion.p variants={itemVariants} className="text-[13.5px] leading-[1.9] text-[#1a0a00]/60 mb-9">From the hand-loomed Dhaka of Palpa to the soft<br />warmth of Himalayan Pashmina — each garment<br />carries a story woven across generations.</motion.p>
+    <motion.div variants={itemVariants}>
+     <HeroCTAs />
+    </motion.div>
+    <motion.div variants={itemVariants}>
     <HeroStats />
-   </div>
+    </motion.div>
+   </motion.div>
   );
 }
 
@@ -63,7 +86,14 @@ function HeroStats() {
 export function ProductCard({ product, stackPos, rotation, offset, isTop, hovered, onMouseDown, onMouseUp, onMouseEnter, onMouseLeave }) {     const scale = (0.86 + stackPos * 0.047) * (isTop && hovered ? 1.025 : 1);
 
  return (
-  <div onMouseDown={onMouseDown} onMouseUp={onMouseUp} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} className="absolute inset-0 rounded-md overflow-hidden select-none" style={{
+  <motion.div onMouseDown={onMouseDown} onMouseUp={onMouseUp} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} className="absolute inset-0 rounded-md overflow-hidden select-none" initial={{ opacity: 0, x: 50, scale: 0.8 }}
+      animate={{ opacity: 1, x: offset.x, y: offset.y, scale: scale, rotate: rotation, zIndex: stackPos + 1 }}
+      transition={{
+        duration: 0.6,
+        ease: [0.34, 1.45, 0.64, 1],
+        delay: stackPos * 0.1
+      }}
+      style={{
     background: product.cardBg,
     zIndex: stackPos + 1,
     transform: `rotate(${rotation}deg) translate(${offset.x}px, ${offset.y}px) scale(${scale})`,
@@ -73,7 +103,7 @@ export function ProductCard({ product, stackPos, rotation, offset, isTop, hovere
     }}>
      <CardImage product={product} />
      <CardBody product={product} isTop={isTop} />
-    </div>
+    </motion.div>
   );
 }
 
