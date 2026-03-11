@@ -34,7 +34,15 @@ const Navbar = () => {
      <div className="hidden sm:flex items-center gap-2 px-4 py-2 bg-white/30 backdrop-blur-md rounded-full border border-white/40 shadow-sm focus-within:ring-2 focus-within:ring-[#b8860b] transition-all duration-300">
 
       <Search size={18} className="text-[#0f172a]/70" />
-      <input type="text" placeholder="Search products..."className="bg-transparent outline-none text-sm text-[#0f172a] placeholder:text-[#0f172a]/50 w-40 focus:w-56 transition-all duration-300" />
+      <input type="text" value={search} onChange={handleSearchChange} placeholder="Search products..."className="bg-transparent outline-none text-sm text-[#0f172a] placeholder:text-[#0f172a]/50 w-40 focus:w-56 transition-all duration-300" />
+
+      {search && (
+       <X size={16} onMouseDown={(e) => {
+        e.preventDefault();
+        setSearch("");
+      }}
+      className="cursor-pointer text-[#0f172a]/60 hover:text-[#b8860b] transition-colors"/>
+    )}
      </div>
 
       <ul className='hidden lg:flex gap-5 text-sm text-gray-700 font-medium'>
