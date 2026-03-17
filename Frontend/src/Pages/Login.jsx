@@ -31,7 +31,9 @@ const Login = () => {
     localStorage.setItem('auth_token', 'mock_token_123');
     localStorage.setItem('user_name', isLogin ? 'User' : name);
 
-    navigate('/');
+    localStorage.setItem('isLoggedIn', 'true');
+
+    navigate('/home');
     } catch (err) {
       setError('An error occurred during authentication.');
     } finally {

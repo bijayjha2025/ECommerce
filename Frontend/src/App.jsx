@@ -1,4 +1,4 @@
-import { Routes, Route, useLocation } from 'react-router-dom'
+import { Routes, Route, useLocation, Navigate } from 'react-router-dom'
 import Home from './Pages/Home'
 import About from './Pages/About'
 import Contact from './Pages/Contact'
@@ -26,6 +26,12 @@ const PageTransition = ({ children }) => {
   );
 }
 
+const isLoggedIn = () => localStorage.getItem('isLoggedIn') === 'true';
+
+const ProtectedRoute = ({ children }) => {
+  return isLoggedIn() ? children : <Navigate to="/login" replace />;
+}
+
 const App = () => {
   const location = useLocation();
 
@@ -39,18 +45,22 @@ const App = () => {
       <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
 
-        <Route path='/' element={<PageTransition><Home /> </PageTransition>} />
+        <Route path='/' element={isLoggedIn() ? <Navigate to="/home" replace /> : <Navigate to="/login" replace /> } />
+
+        <Route path='/login' element={<PageTransition><Login /></PageTransition>} />
+
         <Route path='/about' element={<PageTransition><About /> </PageTransition>} />
         <Route path='/contact' element={<PageTransition><Contact /> </PageTransition>} />
-        <Route path='/login' element={<PageTransition><Login /> </PageTransition>} />
         <Route path='/collection' element={<PageTransition><Collection /> </PageTransition>} />
 
-        <Route path='/cart' element={<PageTransition><Cart /> </PageTransition>} />
-        <Route path='/products' element={<PageTransition><Products /> </PageTransition>} />
-        <Route path='/orders' element={<PageTransition><Orders /> </PageTransition>} />
-        <Route path='/favorites' element={<PageTransition><Favorites /> </PageTransition>} />
+        <Route path='/home' element={<ProtectedRoute><PageTransition><Home /> </PageTransition></ProtectedRoute>} />
+        <Route path='/cart' element={<ProtectedRoute><PageTransition><Cart /> </PageTransition></ProtectedRoute>} />
+        <Route path='/products' element={<ProtectedRoute><PageTransition><Products /> </PageTransition></ProtectedRoute>} />
+        <Route path='/orders' element={<ProtectedRoute><PageTransition><Orders /> </PageTransition></ProtectedRoute>} />
+        <Route path='/favorites' element={<ProtectedRoute><PageTransition><Favorites /> </PageTransition></ProtectedRoute>} />
 
-        <Route path='/myaccount' element={<PageTransition><MyAccount /> </PageTransition>} />
+        <Route path='/myaccount' element={<ProtectedRoute><PageTransition><MyAccount /> </PageTransition></ProtectedRoute>} />
+
       </Routes>
       </AnimatePresence>
 
