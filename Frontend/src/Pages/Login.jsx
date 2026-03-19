@@ -31,7 +31,7 @@ const Login = () => {
     localStorage.setItem('auth_token', 'mock_token_123');
     localStorage.setItem('user_name', isLogin ? 'User' : name);
 
-    localStorage.setItem('isLoggedIn', 'true');
+    localStorage.setItem('is_logged_in', 'true');
 
     navigate('/home');
     } catch (err) {

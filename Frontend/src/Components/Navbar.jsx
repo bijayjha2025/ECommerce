@@ -11,8 +11,9 @@ const Navbar = () => {
   const { wishlist, getCartCount, search, setSearch } = useContext(ShopContext);
 
   const logout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
+    localStorage.removeItem('auth_token');
+    localStorage.removeItem('user_name');
+    localStorage.removeItem('is_logged_in');
     navigate('/login');
   };
 
@@ -27,7 +28,7 @@ const Navbar = () => {
   return (
 
     <div className='relative flex items-center justify-between py-5 px-4 sm:px-6'>
-     <Link to="/">
+     <Link to="/home">
       <img src={assets.Logo} alt="Logo" className='w-28 sm:w-32 md:w-40' />
      </Link>
      
@@ -47,7 +48,7 @@ const Navbar = () => {
 
       <ul className='hidden lg:flex gap-5 text-sm text-gray-700 font-medium'>
         
-        <NavLink to="/" className='flex flex-col items-center gap-1'>
+        <NavLink to="/home" className='flex flex-col items-center gap-1'>
         <p className='text-[#0f172a]'>HOME</p>
         <hr className="w-1/2 h-[2px] bg-[#b8860b] border-none mx-auto hidden"></hr>
         </NavLink>
@@ -115,7 +116,7 @@ const Navbar = () => {
       <div className={`fixed top-0 right-0 h-full w-72 bg-[#ffcb63] z-50 flex flex-col shadow-xl transition-transform duration-300 ${visible ? 'translate-x-0' : 'translate-x-full'}`}>
 
        <div className="flex items-center justify-between px-6 py-5 border-b border-[#b8860b]/30">
-        <Link to="/" onClick={() => setVisible(false)}>
+        <Link to="/home" onClick={() => setVisible(false)}>
         <img src={assets.Logo} alt="Logo" className='w-24' />
         </Link>
         
@@ -130,7 +131,7 @@ const Navbar = () => {
         </div>
 
         <ul className="flex flex-col mt-4 px-4">
-         {[['/', 'HOME'], ['/collection', 'COLLECTION'], ['/about', 'ABOUT'], ['/contact', 'CONTACT']].map(([path, label]) => (
+         {[['/home', 'HOME'], ['/collection', 'COLLECTION'], ['/about', 'ABOUT'], ['/contact', 'CONTACT']].map(([path, label]) => (
           <NavLink key={path} to={path} onClick={() => setVisible(false)} className={({ isActive }) => `flex items-center justify-between py-4 px-2 border-b border-[#b8860b]/20 text-sm font-medium transition-colors ${isActive ? 'text-[#b8860b]' : 'text-[#0f172a] hover:text-[#b8860b]'}`}>
            {label}
            <ChevronRight size={16} className="opacity-50" />

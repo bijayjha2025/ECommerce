@@ -26,7 +26,7 @@ const PageTransition = ({ children }) => {
   );
 }
 
-const isLoggedIn = () => localStorage.getItem('isLoggedIn') === 'true';
+const isLoggedIn = () => localStorage.getItem('is_logged_in') === 'true';
 
 const ProtectedRoute = ({ children }) => {
   return isLoggedIn() ? children : <Navigate to="/login" replace />;
