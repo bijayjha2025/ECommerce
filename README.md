@@ -11,6 +11,29 @@ This project currently focuses on the frontend architecture and user interface, 
 ## Live Demo
 https://wearnepal-bzvj.vercel.app/ 
 
+## Screenshots
+<details>
+<summary>Click here to view screenshots</summary>
+
+### Features & Pages
+| View | View |
+|---|---|
+| ![Hero](Frontend/public/Screenshots/Hero.png) | ![Featured](Frontend/public/Screenshots/Featured.png) |
+| ![Best Sellers](Frontend/public/Screenshots/BestSellers.png) | ![Items](Frontend/public/Screenshots/Items.png) |
+| ![Filter](Frontend/public/Screenshots/Filter.png) | ![Services](Frontend/public/Screenshots/Services.png) |
+| ![BG](Frontend/public/Screenshots/BG.png) | ![Marquee](Frontend/public/Screenshots/Marquee.png) |
+| ![Achievements](Frontend/public/Screenshots/Achievements.png) | ![Submit](Frontend/public/Screenshots/Submit.png) |
+| ![NewsLetter and Footer](Frontend/public/Screenshots/NewsLetter%20and%20Footer.png) | |
+
+### About & Connect
+| About Us | Connect |
+|---|---|
+| ![About](Frontend/public/Screenshots/About.png) | ![Connect Us](Frontend/public/Screenshots/ConnectUs.png) |
+| ![About 2](Frontend/public/Screenshots/About2.png) | ![Join Us](Frontend/public/Screenshots/JoinUs.png) |
+| ![About Continue](Frontend/public/Screenshots/AboutContinue.png) | ![Artist](Frontend/public/Screenshots/Artist.png) |
+
+</details>
+
 ## Core Features
 - Landing / Hero Section: A visually engaging entry point introducing a featured Nepali fashion collections.
 - Product Catalog: Browse a curated list of products inspired by Nepali traditional clothing and materials.
