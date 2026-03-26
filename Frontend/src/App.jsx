@@ -34,13 +34,14 @@ const ProtectedRoute = ({ children }) => {
 
 const App = () => {
   const location = useLocation();
+  const isLoginPage = location.pathname === '/login';
 
   return (
     <div className='px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw] bg-gradient-to-tr
    from-[#c4a462] via-[#fcedbb] to-[#faae16] min-h-screen'>
 
       <ToastContainer position="bottom-right" />
-      <Navbar />
+      {!isLoginPage && <Navbar />}
       
       <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
@@ -49,9 +50,9 @@ const App = () => {
 
         <Route path='/login' element={<PageTransition><Login /></PageTransition>} />
 
-        <Route path='/about' element={<PageTransition><About /> </PageTransition>} />
-        <Route path='/contact' element={<PageTransition><Contact /> </PageTransition>} />
-        <Route path='/collection' element={<PageTransition><Collection /> </PageTransition>} />
+        <Route path='/about' element={<ProtectedRoute><PageTransition><About /> </PageTransition></ProtectedRoute>} />
+        <Route path='/contact' element={<ProtectedRoute><PageTransition><Contact /> </PageTransition></ProtectedRoute>} />
+        <Route path='/collection' element={<ProtectedRoute><PageTransition><Collection /> </PageTransition></ProtectedRoute>} />
 
         <Route path='/home' element={<ProtectedRoute><PageTransition><Home /> </PageTransition></ProtectedRoute>} />
         <Route path='/cart' element={<ProtectedRoute><PageTransition><Cart /> </PageTransition></ProtectedRoute>} />
@@ -64,7 +65,7 @@ const App = () => {
       </Routes>
       </AnimatePresence>
 
-      <Footer />
+      {!isLoginPage && <Footer />}
 
 
 
